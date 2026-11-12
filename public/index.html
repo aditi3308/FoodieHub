@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodieHub | Food Ordering</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a class="logo" href="#">🍔 FoodieHub</a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#orders">My Orders</a>
+  </nav>
+  <div class="nav-actions">
+    <button id="cartButton" class="secondary-btn">Cart (<span id="cartCount">0</span>)</button>
+    <button id="loginButton" class="primary-btn">Login</button>
+    <button id="logoutButton" class="secondary-btn hidden">Logout</button>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">FRESH • FAST • DELICIOUS</p>
+      <h1>Your favourite food,<br>delivered to your door.</h1>
+      <p>Discover delicious meals and order your favourites with FoodieHub.</p>
+      <a href="#menu" class="primary-btn">Explore Menu</a>
+    </div>
+    <div class="hero-image">🍕 🍔 🍟</div>
+  </section>
+
+  <section id="menu" class="section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">WHAT'S COOKING?</p>
+        <h2>Our Menu</h2>
+      </div>
+      <input id="searchInput" type="search" placeholder="Search food...">
+    </div>
+    <div id="menuGrid" class="menu-grid">
+      <p>Loading menu...</p>
+    </div>
+  </section>
+
+  <section id="orders" class="section">
+    <h2>My Orders</h2>
+    <div id="ordersList">
+      <p>Log in to see your orders.</p>
+    </div>
+  </section>
+
+  <section id="adminSection" class="section hidden">
+    <h2>Admin Dashboard</h2>
+
+    <div class="admin-panel">
+      <h3>Add a food item</h3>
+      <form id="addMenuForm" class="form-grid">
+        <input name="name" placeholder="Food name" required>
+        <input name="price" type="number" min="1" step="0.01" placeholder="Price" required>
+        <input name="category" placeholder="Category" required>
+        <input name="image" type="url" placeholder="Image URL (optional)">
+        <label for="imageFile">Or upload a picture</label>
+<input
+  id="imageFile"
+  name="imageFile"
+  type="file"
+  accept=".jpg,.jpeg,.png,.webp,.gif"
+>
+        <textarea name="description" placeholder="Description"></textarea>
+        <button class="primary-btn" type="submit">Add Food Item</button>
+      </form>
+    </div>
+
+    <h3>Customer Orders</h3>
+    <div id="adminOrders">
+      <p>Loading orders...</p>
+    </div>
+  </section>
+</main>
+
+<!-- Login and registration dialog -->
+<div id="authModal" class="modal hidden">
+  <div class="modal-card">
+    <button class="close-btn" id="closeAuth" aria-label="Close">×</button>
+    <h2 id="authTitle">Welcome to FoodieHub</h2>
+
+    <div class="auth-tabs">
+      <button type="button" id="customerTab" class="active">Customer</button>
+      <button type="button" id="adminTab">Admin</button>
+    </div>
+
+    
+<form id="authForm" novalidate>
+  <input id="nameInput" placeholder="Your name" autocomplete="name">
+
+  <input id="emailInput" type="email" placeholder="Email address" required autocomplete="email">
+  <p id="emailError" class="message" aria-live="polite"></p>
+
+  <input id="passwordInput" type="password" placeholder="Password" required autocomplete="current-password">
+  <p id="passwordError" class="message" aria-live="polite"></p>
+
+  <button id="authSubmit" class="primary-btn full-width" type="submit">Login</button>
+</form>
+
+
+    <p id="registerPrompt" class="auth-note">
+      New customer? <button type="button" id="registerButton">Create an account</button>
+    </p>
+    <p id="authMessage" class="message" aria-live="polite"></p>
+  </div>
+</div>
+
+<!-- Shopping cart dialog -->
+<div id="cartModal" class="modal hidden">
+  <div class="modal-card">
+    <button class="close-btn" id="closeCart" aria-label="Close">×</button>
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal">Total: ₹0.00</h3>
+    <form id="checkoutForm">
+      <textarea id="deliveryAddress" placeholder="Enter your delivery address" required></textarea>
+      <button class="primary-btn full-width" type="submit">Place Order</button>
+    </form>
+    <p id="checkoutMessage" class="message" aria-live="polite"></p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 FoodieHub. Made with ❤️ for food lovers.</p>
+</footer>
+
+<script src="script.js"></script>
+<div id="toast" class="toast"></div>
+</body>
+</html>
